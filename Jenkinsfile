@@ -27,7 +27,7 @@ pipeline {
             steps {
                 sh '''
                 docker run --name ng-box -p 8081:80 -d demo-img
-				docker run --name ng-box -p 8082:80 -d demo-img
+				docker run --name ng-box2 -p 8082:80 -d demo-img
                 '''
             }
         }
