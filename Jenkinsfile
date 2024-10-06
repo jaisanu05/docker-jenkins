@@ -5,8 +5,8 @@ pipeline {
             steps {
                 sh '''
                 if [ "$(docker ps -aq -f name=ng-box)" ]; then
-                    docker stop ng-box
-                    docker rm ng-box
+                    docker stop ng-box ng-box2
+                    docker rm ng-box ng-box2
                 fi
 
                 # Check if image 'demo-img' exists
