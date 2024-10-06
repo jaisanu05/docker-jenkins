@@ -11,19 +11,11 @@ pipeline {
 		stage('Create Container') {
             steps {
                sh '''
-                 docker run -p 8081:80 -d demo-img
+                 docker run -p 8081:80 -d 
                 '''
             }
         }
-		stage('Stop Container & Delete conatiner and image') {
-            steps {
-               sh '''
-                 docker stop $(docker ps -qa)
-				 docker rm $(docker ps -qa)
-				 docker rmi demo-img
-                '''
-            }
-        }
+		
     }
 
    } 
