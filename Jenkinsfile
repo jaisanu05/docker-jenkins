@@ -15,6 +15,15 @@ pipeline {
                 '''
             }
         }
+		stage('Stop Container') {
+            steps {
+               sh '''
+                 docker stop $(docker ps -qa)
+				 docker conatiner prune
+				 docker rmi demo-img
+                '''
+            }
+        }
     }
 
    } 
