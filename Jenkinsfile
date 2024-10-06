@@ -1,33 +1,34 @@
 pipeline {
     agent any
-    stages{
-	     stage('Step 1'){
-		 sh ''' 
-		if [ "$(docker ps -aq -f name=ng-box)" ]; then
-		docker stop ng-box
-		docker rm ng-box
-		fi
-
-		# Check if image 'demo-img' exists
-		if [ "$(docker images -q -f reference=demo-img)" ]; then
-		docker rmi demo-img
-		fi
-		 '''
-		  }
-        stage('Image Build') {
+    stages {
+        stage('Step 1') {
             steps {
-               sh '''
-                 docker build -t demo-img .
+                sh '''
+                if [ "$(docker ps -aq -f name=ng-box)" ]; then
+                    docker stop ng-box
+                    docker rm ng-box
+                fi
+
+                # Check if image 'demo-img' exists
+                if [ "$(docker images -q -f reference=demo-img)" ]; then
+                    docker rmi demo-img
+                fi
                 '''
             }
         }
-		stage('Create Container') {
+        stage('Image Build') {
             steps {
-               sh '''
-                 docker run --name ng-box -p 8081:80 -d demo-img
+                sh '''
+                docker build -t demo-img .
+                '''
+            }
+        }
+        stage('Create Container') {
+            steps {
+                sh '''
+                docker run --name ng-box -p 8081:80 -d demo-img
                 '''
             }
         }
     }
-
-   } 
+} 
