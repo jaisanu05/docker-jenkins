@@ -15,7 +15,7 @@ pipeline {
                 '''
             }
         }
-		stage('Stop Container') {
+		stage('Stop Container & Delete conatiner and image') {
             steps {
                sh '''
                  docker stop $(docker ps -qa)
