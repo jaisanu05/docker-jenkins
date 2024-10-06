@@ -2,13 +2,11 @@ pipeline {
     agent any
     stages{
 	     stage{
-		 if[ docker ps -aq -f name="ng-box" ]
-			 then
+		 if[ "$(docker ps -aq -f name="ng-box")" ]; then
 			 docker stop ng-box
 			 docker rm ng-box
 		 fi
-		 if[ docker images -q name=demo-img ]	 
-		  then
+		 if[ "$(docker images -q -f name=demo-img)" ]; then	 
 			docker rmi demo-img
 		  fi	
 		  }
