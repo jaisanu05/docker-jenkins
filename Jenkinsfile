@@ -19,7 +19,7 @@ pipeline {
             steps {
                sh '''
                  docker stop $(docker ps -qa)
-				 docker conatiner prune
+				 docker rm $(docker ps -qa)
 				 docker rmi demo-img
                 '''
             }
