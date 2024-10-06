@@ -11,7 +11,7 @@ pipeline {
 		stage('Create Container') {
             steps {
                sh '''
-                 docker run -p 8081:80 -d 
+                 docker run -p 8081:80 -d demo-img
                 '''
             }
         }
