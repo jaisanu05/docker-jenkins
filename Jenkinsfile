@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages{
-	     stage{
+	     stage('Step 1'){
 		 sh ''' 
 		if [ "$(docker ps -aq -f name=ng-box)" ]; then
 		docker stop ng-box
